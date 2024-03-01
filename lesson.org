@@ -1,0 +1,90 @@
+
+# - Main "org-teaching" example lesson contents file. 
+
+# - Course writing happens here. 
+# - Please edit at will with org-mode (in Emacs, see http://orgmode.org/)
+
+# - Load [[./handbook.org]] or [[./slides.org]] for generating final
+# - documents, resp. for the students handbook or the slides for
+# - presentation in the classroom.
+
+# ----------
+# Contents of this file is Copyright (c) Manuel Pérez-Piñar
+# and subject of the terms of the [[file:LICENCE]] file.
+# ----------
+
+#+TITLE: Program construction
+#+SUBTITLE:
+#+AUTHOR: Digital Technologies
+#+DATE: 2023-24
+
+
+
+# won't work for the moment
+# #+REVEAL_HEAD_PREAMBLE: <style type="text/css">
+# #+REVEAL_HEAD_PREAMBLE:<!--/*--><![CDATA[/*><!--*/
+# #+REVEAL_HEAD_PREAMBLE: div.figure { float:right; }
+# #+REVEAL_HEAD_PREAMBLE: /*]]>*/-->
+# #+REVEAL_HEAD_PREAMBLE: </style>
+
+
+# - Customize at will these org-reveal params:
+
+#+REVEAL_HLEVEL: 1
+# +REVEAL_THEME: league
+#+REVEAL_THEME: white
+# +REVEAL_TRANS: none
+#+REVEAL_TRANS: fade
+#+REVEAL_SPEED: fast
+#+REVEAL_MARGIN: 0.0
+#+REVEAL_EXTRA_CSS: ./presentation.css
+#+REVEAL_ROOT: ./reveal
+# +REVEAL_TITLE_SLIDE_BACKGROUND: ./media/title-slide-background.png
+# Use the jump plugin and the SVG layers display with reveal-svg-fragment
+#+REVEAL_EXTRA_JS:      { src: './reveal.js-jump-plugin/jump/jump.js', async: true }, { src: './reveal.js-reveal-svg-fragment/reveal-svg-fragment.js', condition: function() { return !!document.querySelector( '[data-svg-fragment]' ); } }
+#+REVEAL_PLUGINS: (highlight notes)
+#+REVEAL_HIGHLIGHT_CSS: ./reveal/plugin/highlight/zenburn.css
+
+# org-reveal options :
+# we don't really need a local copy of d3, but in case, here's how to
+# customize its location
+# +REVEAL_INIT_OPTIONS: center:false, slideNumber:true, svgFragment: { d3: "./js/d3.min.js" }
+#+REVEAL_INIT_OPTIONS: center:true, slideNumber:true
+#+OPTIONS: reveal_title_slide:"<h1 class=\"title\">%t<h1><h2>%s</h2><h2></h2><h3>%a<h3><h3 class=\"date\">%d</h3>"
+
+
+# - Customize standard common org-mode headers (but you may check those in slides.org or handout.org instead)
+
+#+OPTIONS: tags:nil ^:nil
+
+#+LANGUAGE: en
+
+
+# - Customize HTML headers
+
+#+REVEAL_HEAD_PREAMBLE: <meta name="copyright" content="Digital Technologies -- Manuel Pérez-Piñar -- 2023" />
+
+
+# - Content here:
+* Practice
+
+** HTML tags
+
+
+- Hyperlink to ~https://google.com~ on text /Google/:
+#+ATTR_REVEAL: :frag appear
+#+begin_src html
+<a href="https://google.com">Google</a>
+#+end_src
+- Image ~picture.png~:
+#+ATTR_REVEAL: :frag appear
+#+begin_src html
+<img src="picture.png">
+#+end_src
+- Include program from file called ~script.js~:
+#+ATTR_REVEAL: :frag appear
+#+begin_src html
+<script src="script.js"></script>
+#+end_src
+
+

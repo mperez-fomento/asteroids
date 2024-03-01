@@ -1,0 +1,21 @@
+.reveal section img {
+  border: none;
+  box-shadow: none;
+}
+.reveal pre {
+  max-height: 600px;
+  width: 100%;
+}
+code {
+  background-color: lightgrey;
+}
+
+/* src blocks captions */
+label.org-src-name {
+  font-size: 80%;
+  font-style: italic;
+}
+
+.reveal table td {
+  text-align: center;
+}

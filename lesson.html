@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Binary Code</title>
+<meta name="author" content="Digital Technologies"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal/dist/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal/dist/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="copyright" content="Digital Technologies -- Manuel Pérez-Piñar -- 2023" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Binary Code<h1><h2>Representing information using only 0 and 1</h2><h2></h2><h3>Digital Technologies<h3><h3 class="date">2023-24</h3>
+</section>
+<section id="sec-table-of-contents"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-org70072fa">Introduction</a></li>
+<li><a href="#/slide-orgd1a4cb7">Binary code</a></li>
+<li><a href="#/slide-orge09efeb">Natural numbers</a></li>
+<li><a href="#/slide-org32a5533">Information units</a></li>
+<li><a href="#/slide-orge225063">Texts</a></li>
+<li><a href="#/slide-orgf34e268">Images</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="slide-org70072fa">
+<h2 id="org70072fa">Introduction</h2>
+<p>
+What types of information do computers store?
+</p>
+</section>
+<section id="slide-orge94e4b4">
+<h3 id="orge94e4b4">Numbers</h3>
+<iframe src="http://www.usalivestats.com" style="width: 100%; height: 500px;border: none;"></iframe>
+</section>
+<section id="slide-org641a63c">
+<h3 id="org641a63c">Text</h3>
+<iframe src="https://en.wikipedia.org/wiki/Computer_architecture" style="width: 100%; height: 500px; border: none;"></iframe>
+</section>
+<section id="slide-org3f78e41">
+<h3 id="org3f78e41">Images</h3>
+<img src="./media/hd.jpg" style="height: 500px">
+</section>
+<section id="slide-org03309df">
+<h3 id="org03309df">Video</h3>
+<iframe width="100%" height="500px" src="https://www.youtube.com/embed/6dkiqJ_IZGw?si=igs_Y5mGm4UrIgsX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</section>
+<section id="slide-org7edf3e9">
+<h3 id="org7edf3e9">Sound</h3>
+<audio controls loop>
+<source src="./media/sound.mp3" type="audio/mpeg">
+</audio>
+</section>
+<section id="slide-org6129844">
+<h3 id="org6129844">Zeroes and ones</h3>
+<p>
+Everything is stored as a sequence of <i>zeroes and ones</i>.
+</p>
+
+<img src="./media/zeroesandones.jpg" style="height: 500px">
+</section>
+</section>
+<section>
+<section id="slide-orgd1a4cb7">
+<h2 id="orgd1a4cb7">Binary code</h2>
+<p>
+System for representing information using only two symbols:
+</p>
+
+<p style="font-size: 2em;font-family: Courier; color: rgb(200, 127, 90)">0,1</p>
+
+<aside class="notes">
+<p>
+Be aware that 0 and 1 are only names for those two symbols we&rsquo;ll use to represent information. Those names have nothing to do with their real physical representation inside the computer&rsquo;s memory.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orge09efeb">
+<h2 id="orge09efeb">Natural numbers</h2>
+<aside class="notes">
+<p>
+Natural numbers are the numbers we use for counting: 0, 1, 2, 3,&#x2026;
+</p>
+
+<p>
+Technically speaking, 0 is not a natural number, but we&rsquo;ll consider it natural here, for simplicity.
+</p>
+
+<p>
+The representation of natural numbers will be the basis for the representation of other types of information.
+</p>
+
+</aside>
+</section>
+<section id="slide-org8e31739">
+<h3 id="org8e31739">Digits and sequences</h3>
+<ul>
+<li><b>Sequence</b>: <code>1234</code></li>
+<li><b>Digit</b>: each symbol in a sequence.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+We have only 10 different symbols: 0, 1, 2,&#x2026; 9.
+</p>
+
+<p>
+Count passed 9&#x2026; we ran out of symbols&#x2026; we add a digit.
+</p>
+
+<p>
+Count passed 99&#x2026; we ran out of symbols&#x2026; we add a digit.
+</p>
+
+<p>
+We use sequences of symbols: this way, we can represent infinite things with a limited amount of symbols.
+</p>
+
+</aside>
+
+<aside class="notes">
+<p>
+Natural numbers are the numbers we use to count: 0, 1, 2, 3, 4,&#x2026;
+</p>
+
+<p>
+We only have ten different symbol for representing these numbers: 0, 1, 2,&#x2026;, 9.
+</p>
+
+<p>
+To represent bigger quantities, we use sequences of these symbols, like 1234. Each symbol in a sequence is called a digit.
+</p>
+
+<p>
+Combining the symbols into sequences allows us to represent infinite numbers, as long as the length of the sequence is unlimited. For example, with 3-digit sequences we can write 10x10x10=1,000 different numbers, which are: 0, 1, 2,&#x2026; 999 (we don&rsquo;t usually write the leading zeroes: 000, 001, 002,&#x2026;).
+</p>
+
+</aside>
+</section>
+<section id="slide-org4e0405a">
+<h3 id="org4e0405a">Counting with only two symbols</h3>
+<div style="height: 500px; width: 100%; border-width: 2px"></div>
+
+<aside class="notes">
+<p>
+0
+</p>
+
+<p>
+1
+</p>
+
+<p>
+10
+</p>
+
+<p>
+11
+</p>
+
+<p>
+100
+</p>
+
+<p>
+101
+</p>
+
+<p>
+110
+</p>
+
+<p>
+111
+</p>
+
+</aside>
+
+<aside class="notes">
+<p>
+The system we use with two symbols is the same: build sequences. Even with only two symbols, there are 4 different 2-digit sequences, 8 different 3 digit-sequences, etc.
+</p>
+
+</aside>
+</section>
+<section id="slide-orgc147245">
+<h3 id="orgc147245">Position values: decimal numbers</h3>
+<h2 style="font-size: 5em; font-family: Courier">2 2 2 2</h2>
+
+<div style="height: 500px; width: 100%; border-width: 2px"></div>
+
+<aside class="notes">
+<p>
+The value of a digit depends on its position in the sequence.
+</p>
+
+<ul>
+<li>the value of the right-most 2 is 2 (2 times 1);</li>
+<li>the value of the next 2 is 20 (2 times 10);</li>
+<li>the value of the third 2 is 200 (2 times 10 times 10);</li>
+<li>the value of the left-most 2 is 2000 (2 times 10 to the third).</li>
+
+</ul>
+
+<p>
+Every time we shift one position to the left, we multiply the value by ten. This is due to the fact that when we add a digit, the number of different combinations is multiplied by 10, because there are 10 different symbols.
+</p>
+
+</aside>
+</section>
+<section id="slide-orge5a8c52">
+<h3 id="orge5a8c52">Position values: binary numbers</h3>
+<h2 style="font-size: 5em; font-family:Courier">1 1 1 1</h2>
+
+<div style="height: 500px; width: 100%; border-width: 2px"></div>
+
+<aside class="notes">
+<p>
+The system is the same as with decimal numbers. There are two differences:
+</p>
+<ul>
+<li>we only have <code>0</code> and <code>1</code>: the value of a digit is either zero, or the value of its position;</li>
+<li>every time we shift one position to the left, we multiply the value by two (because, the number of different combinations is increased by a factor of two).</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-orgb20382e">
+<h3 id="orgb20382e"><code>Binary</code> ➡️ decimal</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">128</th>
+<th scope="col" class="org-right">64</th>
+<th scope="col" class="org-right">32</th>
+<th scope="col" class="org-right">16</th>
+<th scope="col" class="org-right">8</th>
+<th scope="col" class="org-right">4</th>
+<th scope="col" class="org-right">2</th>
+<th scope="col" class="org-right">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="notes">
+<p>
+128 + 32 + 16 + 4 + 1 = 181
+</p>
+
+<p>
+We don&rsquo;t have to take into account the zeroes, because their value is zero!
+</p>
+
+</aside>
+</section>
+<section id="slide-orgffd3779">
+<h3 id="orgffd3779">📝 Exercise</h3>
+<div style="font-size: 2em"><code>1 1 0 1 1 1 0 0</code></span>
+
+<aside class="notes">
+<p>
+128 + 64 + 16 + 8 + 4 = 220
+</p>
+
+</aside>
+</section>
+<section id="slide-orgfefcd39">
+<h3 id="orgfefcd39">📝 Exercise</h3>
+<div style="font-size: 2em"><code>0 0 0 1 0 1 1 1</code></span>
+
+<aside class="notes">
+<p>
+16 + 4 + 2 + 1 = 23
+</p>
+
+</aside>
+</section>
+<section id="slide-org9c733fc">
+<h3 id="org9c733fc">📝 Exercise</h3>
+<p>
+Which is the biggest 8-digit binary number?
+</p>
+
+<aside class="notes">
+<p>
+The biggest 8-bit binary number is:
+</p>
+
+<p>
+1111 1111
+</p>
+
+<p>
+Whose value is:
+</p>
+
+<p>
+128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255
+</p>
+
+<p>
+It&rsquo;s the immediately preceding number to:
+</p>
+
+<p>
+0001 0000 0000
+</p>
+
+<p>
+Whose value is: 256 (2^8)
+</p>
+
+</aside>
+</section>
+<section id="slide-orge8b0049">
+<h3 id="orge8b0049">Decimal ➡️ <code>binary</code> (subtract method)</h3>
+<p>
+Code in binary the number: 221
+</p>
+
+<aside class="notes">
+<ol>
+<li>Find the biggest power of two smaller than the number.</li>
+<li>Add a <code>1</code> digit to the position corresponding to that power of two.</li>
+<li>Subtract that power of two from the number.</li>
+<li>Repeat the process with the reminder of the subtraction, until the reminder is <code>0</code>.</li>
+
+</ol>
+
+<p>
+221 - 128 = 93
+</p>
+
+<p>
+93 - 64 = 29
+</p>
+
+<p>
+29 - 16 = 13
+</p>
+
+<p>
+13 - 8 = 5
+</p>
+
+<p>
+5 - 4 = 1
+</p>
+
+<p>
+1 - 1 = 0
+</p>
+
+<p>
+221 = 128 + 64 + 16 + 8 + 4 + 1
+</p>
+
+<p>
+221 = 1 1 0 1 1 1 0 1
+</p>
+
+</aside>
+</section>
+<section id="slide-org5b1099c">
+<h3 id="org5b1099c">📝 Exercise</h3>
+<p>
+Code in binary the number: 118
+</p>
+
+<aside class="notes">
+<p>
+118 - 64 = 54
+</p>
+
+<p>
+54 - 32 = 22
+</p>
+
+<p>
+22 - 16 = 6
+</p>
+
+<p>
+6 - 4 = 2
+</p>
+
+<p>
+2 - 2 = 0
+</p>
+
+<p>
+118 = 64 + 32 + 16 + 4 + 2
+</p>
+
+<p>
+118 = 0 1 1 1 0 1 1 0
+</p>
+
+</aside>
+</section>
+<section id="slide-orga05f7a2">
+<h3 id="orga05f7a2">Decimal ➡️ <code>binary</code> (division method)</h3>
+<p>
+Code in binary the number 221 using the division method.
+</p>
+
+<aside class="notes">
+<ol>
+<li>Divide the number by 2.</li>
+<li>Write down the reminder.</li>
+<li>Replace the number by the quotient, and repeat the process until the quotient is <code>0</code>.</li>
+<li>📝 Write all the reminders in reverse order.</li>
+
+</ol>
+
+<p>
+221 / 2 = 110 r: 1
+</p>
+
+<p>
+110 / 2 = 55 r: 0
+</p>
+
+<p>
+55 / 2 = 27 r: 1
+</p>
+
+<p>
+27 / 2 = 13 r: 1
+</p>
+
+<p>
+13 / 2 = 6 r: 1
+</p>
+
+<p>
+6 / 2 = 3 r: 0
+</p>
+
+<p>
+3 / 2 = 1 r: 1
+</p>
+
+<p>
+1 / 2 = 0 r: 1
+</p>
+
+<p>
+221 = 1 1 0 1 1 1 0 1
+</p>
+
+</aside>
+</section>
+<section id="slide-orgd2a73d0">
+<h3 id="orgd2a73d0">📝 Exercise</h3>
+<p>
+Code in binary the number: 118
+</p>
+
+
+<aside class="notes">
+<p>
+118 / 2 = 59 r: 0
+</p>
+
+<p>
+59 / 2 = 29 r: 1
+</p>
+
+<p>
+29 / 2 = 14 r: 1
+</p>
+
+<p>
+14 / 2 = 7 r: 0
+</p>
+
+<p>
+7 / 2 = 3 r: 1
+</p>
+
+<p>
+3 / 2 = 1 r: 1
+</p>
+
+<p>
+1/ 2 = 0 r: 1
+</p>
+
+<p>
+118 = 1 1 1 0 1 1 0
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org32a5533">
+<h2 id="org32a5533">Information units</h2>
+<ul>
+<li>1 bit = 1 binary digit</li>
+<li>1 byte = 8 bits</li>
+<li>1 Kilobyte (1 Kb) = \(2^{10}\) bytes = 1,024 b &asymp; 1,000 b</li>
+<li>1 Megabyte (1 Mb) = \(2^{10}\) Kb &asymp; 1 million bytes</li>
+<li>1 Gigabyte (1 Gb) = \(2^{10}\) Mb &asymp; 1 billion bytes</li>
+<li>1 Terabyte (1 Tb) = \(2^{10}\) Gb &asymp; 1 trillion bytes</li>
+
+</ul>
+</section>
+<section id="slide-org74b4971">
+<h3 id="org74b4971">Storage size</h3>
+<ul>
+<li><i>El Quijote</i>: 2,034,611 characters (&asymp; 2 Mb).</li>
+<li>Picture of 1MP in JPG: approx. 0.5Mb.</li>
+<li>Video HD 60FPS: 200Mb/minute.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge225063">
+<h2 id="orge225063">Texts</h2>
+<div class="outline-text-2" id="text-orge225063">
+</div>
+</section>
+<section id="slide-orgca91823">
+<h3 id="orgca91823">Characters</h3>
+<ul>
+<li><b>Character</b>: symbols that make up the written text.</li>
+<li><b>Text</b>: a sequence of characters.</li>
+
+</ul>
+
+
+<div id="org8952707" class="figure">
+<p><img src="./media/string.png" alt="string.png" />
+</p>
+</div>
+</section>
+<section id="slide-org0f777de">
+<h3 id="org0f777de">Text binary code</h3>
+<p>
+a = <code>0</code>; b = <code>1</code>; c = <code>10</code>; d = <code>11</code>; e = <code>100</code>; f = <code>101</code>; g = <code>110</code>
+</p>
+
+<p>
+Code: <code>110100110</code>
+</p>
+
+<p>
+Meaning?
+</p>
+
+
+<div id="org292c6d2" class="figure">
+<p><img src="./media/text-ambiguity.png" alt="text-ambiguity.png" />
+</p>
+</div>
+
+<p>
+Where does each character start and end?
+</p>
+</section>
+<section id="slide-org96186ce">
+<h3 id="org96186ce">Fixed-length code</h3>
+<p>
+a = <code>000</code>; b = <code>001</code>; c = <code>010</code>; d = <code>011</code>;
+</p>
+
+<p>
+e = <code>100</code>; f = <code>101</code>; g = <code>110</code>
+</p>
+
+<p>
+Code: <code>110100110</code>
+</p>
+
+<p>
+Meaning?
+</p>
+
+
+<div id="org57e6847" class="figure">
+<p><img src="./media/fixed-length-code.png" alt="fixed-length-code.png" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Problem: waste of bits.
+</p>
+
+
+<p>
+Optimal solution. <i>Huffman codes</i> (don&rsquo;t repeat the start).
+a = 00; b = 01; c = 100; d = 101; e = 1100; f = 1101; g = 1110
+</p>
+
+<p>
+1000011101100
+</p>
+
+</aside>
+</section>
+<section id="slide-org898dc27">
+<h3 id="org898dc27">ASCII</h3>
+<img src="./media/ascii-table.png" width="100%" height="500px">
+
+<aside class="notes">
+<p>
+ASCII stands for American Standard Code for Information Interchange
+</p>
+
+<p>
+The table shown is quite old. It&rsquo;s still in use in some applications, but it has mostly been replaced by other coding systems, especially by Unicode.
+</p>
+
+<p>
+Most of the first 32 codes are not really characters, but codes used by the computer to communicate with the screen while sending the actual characters to be printed on it.
+</p>
+
+<p>
+The length is fixed: 8 bits.
+</p>
+
+</aside>
+</section>
+<section id="slide-org363c8ea">
+<h3 id="org363c8ea">Example</h3>
+<p>
+<code>Hello, world!</code>
+</p>
+
+<p>
+<code>72 101 108 108 111 44 32 119 111 114 108 100 33</code>
+</p>
+
+<p>
+<code>01001000 01100101 01101100 01101100 01101111 00101100 00100000 01110111 01101111 01110010 01101100 01100100 00100001</code>
+</p>
+
+<aside class="notes">
+<p>
+Remember that the length is fixed: if the number is smaller than 128, you should put some leading zeroes.
+</p>
+
+</aside>
+</section>
+<section id="slide-org77913bd">
+<h3 id="org77913bd">📝 Exercise</h3>
+<p>
+Code in 8-bit ASCII: <code>IPv4</code>
+</p>
+
+<div style="height: 500px; width: 100%; border-width: 2px"></div>
+
+<aside class="notes">
+<p>
+073 080 118 052
+</p>
+
+<p>
+01001001 01010000 01110110 00110100
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgf34e268">
+<h2 id="orgf34e268">Images</h2>
+<div class="outline-text-2" id="text-orgf34e268">
+</div>
+</section>
+<section id="slide-orga44d3b4">
+<h3 id="orga44d3b4">Bitmap images (raster graphics)</h3>
+<div style="display: grid; grid-template-columns: 50% 50%">
+<div><img src="./media/tigerlr.jpg"></div>
+<div><img src="./media/tigerdetail.png"></div>
+</div>
+
+<aside class="notes">
+<p>
+Image is made up of small squares of a specific color, called pixels.
+</p>
+
+<p>
+When I zoom in, I see the pixels.
+</p>
+
+<p>
+Good for photographs (real images).
+</p>
+
+</aside>
+</section>
+<section id="slide-orgea83c99">
+<h3 id="orgea83c99">Vector graphics</h3>
+<div style="display: grid; grid-template-columns: 50% 50%">
+<div><img src="./media/vector.svg"></div>
+<div><img src="./media/svgdetail.png"></div>
+</div>
+
+<aside class="notes">
+<p>
+Images are made up of geometric shapes.
+</p>
+
+<p>
+I can zoom in as much as I want. Will never lose detail.
+</p>
+
+<p>
+God for drawings and text.
+</p>
+
+</aside>
+</section>
+<section id="slide-org9c78d4a">
+<h3 id="org9c78d4a">Bitmap images</h3>
+<p>
+Pixel = Picture element
+</p>
+
+<p>
+Pixel size = width (px) x height (px)
+</p>
+</section>
+<section id="slide-org618eed8">
+<h3 id="org618eed8">Color</h3>
+<p>
+RGB = Red Green Blue
+</p>
+
+<p>
+1 byte per color = 3 bytes per pixel
+</p>
+
+<p>
+Example: <code>11111111 11111111 00000000</code> = yellow (red + green)
+</p>
+</section>
+<section id="slide-org6ea2034">
+<h3 id="org6ea2034">Color depth</h3>
+<p>
+<b>Color depth</b> = number of bits per pixel
+</p>
+
+<p>
+RGB = 24 bits/px
+</p>
+
+<p>
+📝 How many different colors can be represented?
+</p>
+
+<p>
+📝 How much memory occupies a 800x600 px image?
+</p>
+
+
+<aside class="notes">
+<p>
+How many different colors can be represented this way?
+</p>
+
+<p>
+256 x 256 x 256 = 2^24 = 16 x 2^20 = 16,000,000 (aprox)
+</p>
+
+<p>
+📝 How much memory occupies a 800x600 px image?
+</p>
+
+<p>
+800 x 600 = 480,000 px
+</p>
+
+<p>
+480,000 x 3 = 1,440,000 bytes = 1.34 Mb
+</p>
+
+<p>
+But there&rsquo;s compression.
+</p>
+
+</aside>
+</section>
+<section id="slide-org8b34686">
+<h3 id="org8b34686">Color Picker</h3>
+<input type="color">
+<div style="height: 500px; width: 100%; border-width: 2px"></div>
+</section>
+<section id="slide-org02aa106">
+<h3 id="org02aa106">Transparency</h3>
+<p>
+<b>Alpha Channel</b>: 1 byte for opacity.
+</p>
+
+<p>
+<b>RGBA</b> = RGB + Alpha Channel
+</p>
+
+<p>
+4 bytes per pixel
+</p>
+
+<p>
+<b>JPG</b> ❌ no alpha channel
+</p>
+
+<p>
+<b>PNG</b> ❔ optional alpha channel
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal/dist/reveal.js"></script>
+<script src="./reveal/plugin/markdown/markdown.js"></script>
+<script src="./reveal/plugin/zoom/zoom.js"></script>
+<script src="./reveal/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes],
+center:true, slideNumber:true
+});
+
+</script>
+</body>
+</html>

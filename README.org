@@ -1,0 +1,279 @@
+# - Main "org-teaching" example lesson contents file.
+
+# - Course writing happens here.
+# - Please edit at will with org-mode (in Emacs, see http://orgmode.org/)
+
+# - Load [[./handbook.org]] or [[./slides.org]] for generating final
+# - documents, resp. for the students handbook or the slides for
+# - presentation in the classroom.
+
+# ----------
+# Contents of this file is Copyright (c) Manuel Pérez-Piñar
+# and subject of the terms of the [[file:LICENCE]] file.
+# ----------
+
+#+TITLE: Arrays
+#+SUBTITLE: Lists of objects
+#+AUTHOR: Digital Technologies
+#+DATE: 2023-24
+
+
+
+# won't work for the moment
+# #+REVEAL_HEAD_PREAMBLE: <style type="text/css">
+# #+REVEAL_HEAD_PREAMBLE:<!--/*--><![CDATA[/*><!--*/
+# #+REVEAL_HEAD_PREAMBLE: div.figure { float:right; }
+# #+REVEAL_HEAD_PREAMBLE: /*]]>*/-->
+# #+REVEAL_HEAD_PREAMBLE: </style>
+
+
+# - Customize at will these org-reveal params:
+
+#+REVEAL_HLEVEL: 1
+# +REVEAL_THEME: league
+#+REVEAL_THEME: white
+# +REVEAL_TRANS: none
+#+REVEAL_TRANS: fade
+#+REVEAL_SPEED: fast
+#+REVEAL_MARGIN: 0.0
+#+REVEAL_EXTRA_CSS: ./presentation.css
+#+REVEAL_ROOT: ./reveal
+# +REVEAL_TITLE_SLIDE_BACKGROUND: ./media/title-slide-background.png
+# Use the jump plugin and the SVG layers display with reveal-svg-fragment
+#+REVEAL_EXTRA_JS:      { src: './reveal.js-jump-plugin/jump/jump.js', async: true }, { src: './reveal.js-reveal-svg-fragment/reveal-svg-fragment.js', condition: function() { return !!document.querySelector( '[data-svg-fragment]' ); } }
+#+REVEAL_PLUGINS: (highlight)
+#+REVEAL_HIGHLIGHT_CSS: ./reveal/plugin/highlight/zenburn.css
+
+# org-reveal options :
+# we don't really need a local copy of d3, but in case, here's how to
+# customize its location
+# +REVEAL_INIT_OPTIONS: center:false, slideNumber:true, svgFragment: { d3: "./js/d3.min.js" }
+#+REVEAL_INIT_OPTIONS: center:true, slideNumber:true
+#+OPTIONS: reveal_title_slide:"<h1 class=\"title\">%t<h1><h2>%s</h2><h2></h2><h3>%a<h3><h3 class=\"date\">%d</h3>"
+
+
+# - Customize standard common org-mode headers (but you may check those in slides.org or handout.org instead)
+
+#+OPTIONS: tags:nil ^:nil
+
+#+LANGUAGE: en
+
+
+# - Customize HTML headers
+
+#+REVEAL_HEAD_PREAMBLE: <meta name="copyright" content="Digital Technologies -- Manuel Pérez-Piñar -- 2023" />
+
+
+# - Content here:
+
+* Array
+
+#+begin_quote
+An *array* is a list of objects.
+#+end_quote
+
+#+attr_html: :border 2 :rules all :frame border
+| Index   |       0 |        1 |       2 |         3 |
+| Element | ~apple~ | ~orange~ | ~lemon~ | ~apricot~ |
+
+#+begin_export html
+<p></p>
+#+end_export
+
+- *Element*: every object on the list.
+- *Index*: the position of an element on the list (starting at zero).
+- *Length*: number of elements.
+
+* Create an empty array
+
+- As for any other class of objects:
+
+  #+begin_src js
+let fruits = new Array();
+let sequence = new Array();
+  #+end_src
+
+- Shortcut:
+
+  #+begin_src js
+let fruits = [];
+let sequence = [];
+  #+end_src
+
+#+ATTR_HTML: :target _blank
+[[http://localhost:9000/examples/blank.html]]
+
+* Add elements
+
+- On creation:
+
+  #+begin_src js
+let fruits = new Array("apple", "orange", "lemon", "apricot");
+let sequence = [1, 1, 2, 3, 5, 8, 13];
+  #+end_src
+
+- After creating it:
+
+  #+begin_src js
+let semaphore = [];
+let redLight = new Circle(100, "red");
+let yellowLight = new Circle(100, "yellow");
+let greenLight = new Circle(100, "green");
+semaphore.push(redLight);
+semaphore.push(yellowLight);
+semaphore.push(greenLight);
+  #+end_src
+
+* Access the elements
+
+#+begin_quote
+Subscript operator: ~[]~
+~arrayName[index]~
+#+end_quote
+
+#+begin_src js
+let fruits = new Array("apple", "orange", "lemon", "apricot");
+let sequence = [1, 1, 2, 3, 5, 8, 13];
+console.log(fruits[0]);
+console.log(sequence[3]);
+#+end_src
+
+#+RESULTS:
+: apple
+: orange
+: 3
+
+** Arrays are zero-indexed
+
+#+begin_src js
+let primes = [2, 3, 5, 7, 11, 13, 17];
+#+end_src
+
+Access the first element
+
+#+ATTR_REVEAL: :frag appear
+#+begin_src js
+primes[0];
+#+end_src
+
+** Arrays are zero-indexed
+
+#+begin_src js
+let primes = [2, 3, 5, 7, 11, 13, 17];
+#+end_src
+
+Access element whose value is 7:
+
+#+ATTR_REVEAL: :frag appear
+#+begin_src js
+primes[3];
+#+end_src
+
+** Arrays are zero-indexed
+
+#+begin_src js
+let primes = [2, 3, 5, 7, 11, 13, 17];
+#+end_src
+
+Access the last element
+
+#+ATTR_REVEAL: :frag appear
+#+begin_src js
+primes[6];
+#+end_src
+
+* Array length
+
+#+begin_quote
+Array's property ~length~ gives its number of elements.
+
+~arrayName.length~
+#+end_quote
+
+#+begin_src js
+let primes = [2, 3, 5, 7, 11, 13, 17];
+console.log(primes.length);
+#+end_src
+
+** Arrays are zero-indexed
+
+#+begin_src js
+let primes = [2, 3, 5, 7, 11, 13, 17];
+#+end_src
+
+Which is the length of the array ~primes~?
+
+#+ATTR_REVEAL: :frag appear
+#+begin_src js
+primes.length == 7
+#+end_src
+
+Which is the last element's index?
+
+#+ATTR_REVEAL: :frag appear
+#+begin_src js
+6
+#+end_src
+
+
+** Arrays are zero-indexed
+
+#+begin_src js
+let primes = [2, 3, 5, 7, 11, 13, 17];
+#+end_src
+
+Access the last element
+
+#+ATTR_REVEAL: :frag appear
+#+begin_src js
+primes[primes.length - 1];
+#+end_src
+
+* Get the position of an element
+
+#+begin_quote
+~arrayName.indexOf(value)~ returns the index of the *first* element whose value is ~value~.
+#+end_quote
+
+#+begin_src js
+let fruits = new Array("apple", "orange", "lemon", "apricot");
+console.log(fruits.indexOf("orange"));
+#+end_src
+
+
+* Iterate an array
+
+#+begin_quote
+To iterate an array: to perform some action on every element of the array.
+#+end_quote
+
+** Iterate an array
+
+#+begin_src js
+let fruits = new Array("apple", "orange", "lemon", "apricot");
+let i = 0;
+while (i < fruits.length) {
+  console.log(fruits[i]);
+  i = i + 1;
+}
+#+end_src
+
+#+begin_export html
+<iframe src="./examples/iterate.html" width="100%" height="400px"></iframe>
+#+end_export
+
+
+* Other operations
+
+- /array.splice(start, count)/: delete elements.
+- /array.concat(item1, item2,...)/: append elements.
+- /array.concat(another)/: append /another/ array.
+- /array.includes(value)/: is /value/ in /array/?
+
+#+begin_src js
+let fruits = new Array("apple", "orange", "lemon", "apricot");
+fruits.splice(1, 2); // fruits = ["apple", "apricot"]
+fruits.concat("plum", "pear", "peach");
+// fruits = ["apple", "apricot", "plum", "pear", "peach"]
+console.log(fruits.includes("pineapple")); // false
+#+end_src

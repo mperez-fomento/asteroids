@@ -1,0 +1,35 @@
+# - This document is meant to be converted to HTML for reveal.js and not
+# - to write the actual slides (see [[lesson.org]] instead).
+
+# - It requires the use of the org-reveal exporter for reveal.js (from MELPA)
+
+# Manual install of org-reveal :
+# Use with https://github.com/hakimel/reveal.js/archive/3.9.2.tar.gz
+
+# - Export to HTML viewed in the Web browser: C-c C-e R B
+
+# For printing to PDF : https://github.com/hakimel/reveal.js#pdf-export
+
+# - See also [[./handbook.org]] for a PDF version as a handbook
+
+
+# - Customize specific slides org-mode settings if needed :
+
+#+EXCLUDE_TAGS: handbookonly teachersonly noexport
+
+#+OPTIONS: d:(not "TEACHERSONLY")
+
+#+OPTIONS: num:nil toc:1
+
+
+# - Main content included here:
+
+#+INCLUDE: lesson.org :minlevel 1
+
+* COMMENT Footer 
+
+# Local Variables:
+# org-image-actual-width: nil
+# org-reveal-title-slide: "<h1 class=\"title\">Example lesson<h1><h2>How to teach using org-mode for fun and profit</h2><h2></h2><h3>Olivier Berger<h3><h3 class=\"date\">2023-08-07</h3>"
+# End:
+
