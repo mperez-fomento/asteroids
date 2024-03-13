@@ -71,20 +71,32 @@
 ** HTML tags
 
 
-- Hyperlink to ~https://google.com~ on text /Google/:
+Hyperlink to ~https://google.com~ on text /Google/:
 #+ATTR_REVEAL: :frag appear
 #+begin_src html
 <a href="https://google.com">Google</a>
 #+end_src
-- Image ~picture.png~:
+Insert image ~picture.png~:
 #+ATTR_REVEAL: :frag appear
 #+begin_src html
 <img src="picture.png">
 #+end_src
-- Include program from file called ~script.js~:
+Include program from file called ~script.js~:
 #+ATTR_REVEAL: :frag appear
 #+begin_src html
 <script src="script.js"></script>
 #+end_src
+A paragraph with text /Hello/ in red and size 100px:
+#+ATTR_REVEAL: :frag appear
+#+begin_src html
+<p style="font-size:100px;color:red"></p>
+#+end_src
 
+* Program construction
 
+Things to consider:
+- Which objects do I need?
+- Will I need any collections of objects?
+- Does anything change continuously?
+- Does anything need checking all the time?
+- Are there any events to deal with?
