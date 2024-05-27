@@ -4,53 +4,6 @@ let frame = new Frame(FIT, 1000, 1000, dark, light, start,
 	["background.jpg", "starship.png", "thrust.png", "asteroid1.png", "asteroid2.png", "shipboom.png", "shoot.png", "boom.png"]);
 
 function start() {
-	let background = new Pic("background.jpg");
-	background.centerReg();
-
-	let lives = 3;
-	let livesIcons = [];
-	let i = 0;
-	while (i < lives) {
-		livesIcons.push(new Sprite("starship.png"));
-		livesIcons[i].centerReg();
-		livesIcons[i].sca(0.4);
-		livesIcons[i].loc(frame.stage.width - (i + 1) * livesIcons[i].width - 10, 80);
-		i = i + 1;
-	}
-	let score = 0;
-	let scoreLabel = new Label({
-		text: score,
-		size: 100,
-		color: green
-	});
-	scoreLabel.loc(10, 10);
-
-	let spacecraft = new Sprite("starship.png");
-	spacecraft.centerReg();
-	spacecraft.mov(0, 350);
-
-	let thrust = new Sprite({
-		image: "thrust.png",
-		rows: 4,
-		cols: 5
-	});
-	thrust.centerReg();
-	thrust.mov(0, 450);
-	thrust.run({
-		time: 1,
-		loop: true
-	});
-
-	let asteroids = [];
-	let projectilesStockpile = [];
-	let projectileCapacity = 5;
-	let projectileFillProgressBar = new ProgressBar({ barType: "rectangle", autoHide: false });
-	projectileFillProgressBar.show();
-	projectileFillProgressBar.loc(frame.stage.width - projectileFillProgressBar.width - 10, 20);
-	fillProjectileStockpile();
-
-	let shootedProjectiles = [];
-
 	function createAsteroid() {
 		if (Math.random() > 0.2) {
 			let asteroid = new Sprite(
@@ -68,7 +21,6 @@ function start() {
 			asteroids.push(asteroid);
 		}
 	}
-	setInterval(createAsteroid, 200);
 
 	function moveAsteroid(asteroid) {
 		asteroid.x = asteroid.x + asteroid.speedX;
@@ -85,7 +37,6 @@ function start() {
 			i = i + 1;
 		}
 	}
-	Ticker.add(moveAllAsteroids);
 
 	function moveSpaceCraft(event) {
 		spacecraft.loc(event.stageX, spacecraft.y);
@@ -93,7 +44,6 @@ function start() {
 		frame.update();
 
 	}
-	frame.stage.addEventListener("stagemousemove", moveSpaceCraft);
 
 	function checkAsteroidCollisions() {
 		let i = 0;
@@ -122,7 +72,6 @@ function start() {
 			i = i + 1;
 		}
 	}
-	Ticker.add(checkAsteroidCollisions);
 
 	function spaceCraftHitBy(asteroid) {
 		return spacecraft.hitTestCircle(asteroid);
@@ -133,9 +82,10 @@ function start() {
 		while (i < asteroids.length) {
 			if (spaceCraftHitBy(asteroids[i])) {
 				lives = lives - 1;
-				if (lives >= 0) {
-					livesIcons[lives].dispose();
-					livesIcons.splice(lives, 1);
+				livesIcons[lives].dispose();
+				livesIcons.splice(lives, 1);
+				if (lives == 0) {
+					endGame();
 				}
 				spacecraft.dispose();
 				thrust.loc(thrust.x, frame.stage.height + 500);
@@ -157,7 +107,6 @@ function start() {
 			i = i + 1;
 		}
 	}
-	Ticker.add(spaceCraftHit);
 
 	function addProjectile() {
 		let projectile = new Sprite("shoot.png");
@@ -192,7 +141,6 @@ function start() {
 			}
 		}
 	}
-	frame.stage.addEventListener("click", shoot);
 
 	function moveProjectile(projectile) {
 		projectile.y = projectile.y - projectile.speed;
@@ -209,7 +157,6 @@ function start() {
 			i = i + 1;
 		}
 	}
-	Ticker.add(moveProjectiles);
 
 	function projectileHitsAsteroid(projectile) {
 		let i = 0;
@@ -249,6 +196,103 @@ function start() {
 		}
 	}
 
-	Ticker.add(checkAllProjectiles);
 
+	let background = new Pic("background.jpg");
+	background.centerReg();
+
+	let lives = 3;
+	let livesIcons = [];
+	function fillLives() {
+		let i = 0;
+		while (i < lives) {
+			livesIcons.push(new Sprite("starship.png"));
+			livesIcons[i].centerReg();
+			livesIcons[i].sca(0.4);
+			livesIcons[i].loc(frame.stage.width - (i + 1) * livesIcons[i].width - 10, 80);
+			i = i + 1;
+		}
+	}
+	fillLives();
+	let score = 0;
+	let scoreLabel = new Label({
+		text: score,
+		size: 100,
+		color: green
+	});
+	scoreLabel.loc(10, 10);
+
+	let spacecraft = new Sprite("starship.png");
+	spacecraft.centerReg();
+	spacecraft.mov(0, 350);
+
+	let thrust = new Sprite({
+		image: "thrust.png",
+		rows: 4,
+		cols: 5
+	});
+	thrust.centerReg();
+	thrust.mov(0, 450);
+	thrust.run({
+		time: 1,
+		loop: true
+	});
+
+	let asteroids = [];
+	let projectilesStockpile = [];
+	let projectileCapacity = 5;
+	let projectileFillProgressBar = new ProgressBar({ barType: "rectangle", autoHide: false });
+	projectileFillProgressBar.show();
+	projectileFillProgressBar.loc(frame.stage.width - projectileFillProgressBar.width - 10, 20);
+	fillProjectileStockpile();
+
+	let shootedProjectiles = [];
+
+	let endGameLabel = new Label({
+		text: "GAME OVER",
+		size: 150,
+		bold: true,
+		color: orange,
+		align: "center"
+	});
+	endGameLabel.centerReg();
+	endGameLabel.removeFrom(frame.stage);
+
+	let createAsteroidInterval = null;
+	function playGame() {
+		createAsteroidInterval = setInterval(createAsteroid, 200);
+		frame.stage.addEventListener("stagemousemove", moveSpaceCraft);
+		frame.stage.addEventListener("click", shoot);
+		Ticker.add(moveAllAsteroids);
+		Ticker.add(checkAsteroidCollisions);
+		Ticker.add(spaceCraftHit);
+		Ticker.add(checkAllProjectiles);
+		Ticker.add(moveProjectiles);
+	}
+
+	function restart() {
+		spacecraft.addTo(frame.stage);
+		frame.stage.addEventListener("stagemousemove", moveSpaceCraft);
+		frame.stage.addEventListener("click", shoot);
+		endGameLabel.removeFrom(frame.stage);
+		frame.stage.removeEventListener("keydown", restart);
+		score = 0;
+		scoreLabel.text = score;
+		lives = 3;
+		fillLives();
+		projectilesStockpile = [];
+		fillProjectileStockpile();
+		shootedProjectiles = [];
+		projectileFillProgressBar.percent = 100 * projectilesStockpile.length / projectileCapacity;
+		createAsteroidInterval = setInterval(createAsteroid, 200);
+	}
+
+	function endGame() {
+		frame.stage.removeEventListener("stagemousemove", moveSpaceCraft);
+		frame.stage.removeEventListener("click", shoot);
+		endGameLabel.addTo(frame.stage);
+		document.addEventListener("keydown", restart);
+		clearInterval(createAsteroidInterval);
+	}
+
+	playGame();
 }
